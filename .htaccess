@@ -1,0 +1,4 @@
+# Add your domains for Access-Control here
+
+#Header add Access-Control-Allow-Origin "https://example.com"
+#Header add Access-Control-Allow-Origin "http://localhost"
