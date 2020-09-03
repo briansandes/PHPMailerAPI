@@ -97,7 +97,7 @@ function sanitizeParams($params) {
     }
 
     /* replaces unallowed tags from the email message */
-    $sanitizedParams['message'] = strip_tags(str_replace($phpToBeRemoved, null, $params['message']), '<'.join('><', $allowedTags).'>');
+    $sanitizedParams['message'] = str_replace($phpToBeRemoved, null, $params['message']);
     $sanitizedParams['debug'] = (bool)$sanitizedParams['debug'];
     
     return $sanitizedParams;
