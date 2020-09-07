@@ -2,17 +2,24 @@
 /* PHP Mailing API */
 /* written by Brian on his best days alive despite the COVID-19 outbreak */
 
+define('VERSION', '0.1.1');
+define('VERSION_DATE', '2020-07-07T19:30:00Z');
+
 require 'config.php';
 require 'functions.php';
 
 $requestDomain = str_replace(['http://', 'https://'], null, $_SERVER['HTTP_ORIGIN']);
 
-/* validation */
-/* request method  */
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    throwError('Invalid request method "' . $_SERVER['REQUEST_METHOD'] . '".');
-} else {
-
+/* sanity check */
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
+    output([
+        'error' => 0,
+        'message' => 'Sanity check OK.',
+        'version' => VERSION,
+        'version_date' => VERSION_DATE
+    ]);
+} else
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* all params present */
     $mandatory = ['key', 'to', 'subject', 'message'];
 
